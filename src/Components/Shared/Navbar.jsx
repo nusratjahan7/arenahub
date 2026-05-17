@@ -45,8 +45,8 @@ const Navbar = () => {
         { label: "Home", href: "/" },
         { label: "All Facilities", href: "/facilities" },
         { label: "My Bookings", href: "/bookings" },
-        { label: "Add Facility", href: "/facilities/add" },
-        { label: "Manage My Facilities", href: "/facilities/manage" },
+        { label: "Add Facility", href: "/facilities-add" },
+        { label: "Manage My Facilities", href: "/facilities-manage" },
     ];
 
     const navLinks = user ? authLinks : guestLinks;
