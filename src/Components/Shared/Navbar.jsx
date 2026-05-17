@@ -1,146 +1,140 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
+import { Avatar, CloseIcon } from "@heroui/react";
+import { TrophyIcon } from "lucide-react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { BiTrophy } from "react-icons/bi";
 
 
-export default function Navbar() {
-    const [mobileMenu, setMobileMenu] = useState(false);
-    const [dropdown, setDropdown] = useState(false);
+const Navbar = () => {
+    const pathname = usePathname();
     const router = useRouter();
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const dropdownRef = useRef(null);
 
     const { data: session, isPending } = authClient.useSession();
-
     const user = session?.user;
 
+    useEffect(() => {
+        function handleClickOutside(e) {
+            if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+                setDropdownOpen(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
 
-    const firstLetter = user?.name?.charAt(0)?.toUpperCase();
+    useEffect(() => {
+        document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [mobileMenuOpen]);
 
-    const navLinks = [
-        { name: "Home", href: "/" },
-        { name: "All Facilities", href: "/facilities" },
+    const guestLinks = [
+        { label: "Home", href: "/" },
+        { label: "All Facilities", href: "/facilities" },
     ];
 
     const authLinks = [
-        { name: "My Bookings", href: "/bookings" },
-        { name: "Add Facility", href: "/add-facility" },
-        { name: "Manage My Facilities", href: "/manage-facilities" },
+        { label: "Home", href: "/" },
+        { label: "All Facilities", href: "/facilities" },
+        { label: "My Bookings", href: "/bookings" },
+        { label: "Add Facility", href: "/facilities/add" },
+        { label: "Manage My Facilities", href: "/facilities/manage" },
     ];
 
-    const handleLogout = async () => {
-        await authClient.signOut();
-        router.refresh();
-    };
+    const navLinks = user ? authLinks : guestLinks;
 
     return (
-        <nav className="w-full bg-white">
-            <div className="max-w-7xl mx-auto px-4">
-                <div className="flex items-center justify-between h-20">
-                    {/* Logo */}
-                    <Link href="/" className="flex items-center gap-3">
-                        <div className="w-11 h-11 rounded-xl bg-(--noir) flex items-center justify-center text-white">
-                            <BiTrophy className="h-6 w-6" />
-                        </div>
+        <>
+            <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-100 shadow-sm">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex items-center justify-between h-14">
+                        {/* Logo */}
+                        <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
+                            <div className="w-8 h-8 bg-(--noir) text-white rounded-lg flex items-center justify-center">
+                                <TrophyIcon />
+                            </div>
+                            <span className="text-[15px] font-semibold text-gray-900 tracking-tight">
+                                ArenaHub
+                            </span>
+                        </Link>
 
-                        <h1 className="text-2xl font-bold text-(--noir)">
-                            ArenaHub
-                        </h1>
-                    </Link>
-
-                    {/* Desktop Menu */}
-                    <div className="hidden md:flex items-center gap-8">
-                        {/* Always visible */}
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                className="text-gray-600 hover:text-(--noir) font-medium transition"
-                            >
-                                {link.name}
-                            </Link>
-                        ))}
-
-                        {user &&
-                            authLinks.map((link) => (
+                        {/* Desktop Nav Links */}
+                        <nav className="hidden md:flex items-center gap-1">
+                            {navLinks.map((link) => (
                                 <Link
-                                    key={link.name}
+                                    key={link.href}
                                     href={link.href}
-                                    className="text-gray-600 hover:text-(--noir) font-medium transition"
+                                    className="text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 px-3 py-1.5 rounded-md transition-colors duration-150 font-medium"
                                 >
-                                    {link.name}
+                                    {link.label}
                                 </Link>
                             ))}
-                    </div>
+                        </nav>
 
-                    {/* Right Side */}
-                    <div className="flex items-center gap-3">
-                        {/* Loading */}
-                        {isPending ? (
-                            <div className="w-10 h-10 rounded-full border-2 border-gray-300 border-t-(--noir) animate-spin"></div>
-                        ) : user ? (
-                            <>
-                                {/* User Avatar */}
-                                <div className="relative">
+                        {/* Right Side */}
+                        <div className="flex items-center gap-2">
+                            {!user && (
+                                <button
+                                    onClick={() => router.push("/login")}
+                                    className="hidden md:inline-flex items-center bg-(--noir) hover:bg-(--noir)/80 text-white text-sm font-medium px-4 py-1.5 rounded-lg transition-colors duration-150"
+                                >
+                                    Login
+                                </button>
+                            )}
+
+                            {user && (
+                                <div className="relative hidden md:block" ref={dropdownRef}>
                                     <button
-                                        onClick={() => setDropdown(!dropdown)}
-                                        className="w-11 h-11 rounded-full border bg-gray-100 overflow-hidden flex items-center justify-center text-lg font-semibold text-gray-700"
+                                        onClick={() => setDropdownOpen((prev) => !prev)}
+                                        className="w-8 h-8 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-sm font-semibold text-gray-700 hover:bg-gray-200 transition-colors overflow-hidden"
                                     >
                                         {user.image ? (
                                             <Image
                                                 src={user.image}
-                                                alt="user"
-                                                width={44}
+                                                alt={user.name}
                                                 height={44}
+                                                width={44}
                                                 className="w-full h-full object-cover"
                                             />
                                         ) : (
-                                            firstLetter
+                                            (user.name?.[0] || "U").toUpperCase()
                                         )}
                                     </button>
 
-                                    {/* Dropdown */}
-                                    {dropdown && (
-                                        <div className="absolute right-0 mt-3 w-64 bg-white border rounded-2xl shadow-lg overflow-hidden z-50">
-                                            <div className="p-4">
-                                                <h2 className="font-semibold text-gray-900">
-                                                    {user.name}
-                                                </h2>
-
-                                                <p className="text-sm text-gray-500">
-                                                    {user.email}
-                                                </p>
+                                    {dropdownOpen && (
+                                        <div className="absolute right-0 top-10 w-52 bg-white rounded-xl border border-gray-100 shadow-lg py-1.5 z-50">
+                                            <div className="px-4 py-2.5 border-b border-gray-100 mb-1">
+                                                <p className="text-sm font-semibold text-gray-900">{user.name}</p>
+                                                <p className="text-xs text-gray-500 mt-0.5 truncate">{user.email}</p>
                                             </div>
 
-                                            <div className="flex flex-col">
+                                            {[
+                                                { label: "My Bookings", href: "/bookings" },
+                                                { label: "Add Facility", href: "/facilities/add" },
+                                                { label: "Manage My Facilities", href: "/facilities/manage" },
+                                            ].map((item) => (
                                                 <Link
-                                                    href="/bookings"
-                                                    className="px-4 py-3 hover:bg-gray-100 transition"
+                                                    key={item.href}
+                                                    href={item.href}
+                                                    onClick={() => setDropdownOpen(false)}
+                                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
                                                 >
-                                                    My Bookings
+                                                    {item.label}
                                                 </Link>
+                                            ))}
 
-                                                <Link
-                                                    href="/add-facility"
-                                                    className="px-4 py-3 hover:bg-gray-100 transition"
-                                                >
-                                                    Add Facility
-                                                </Link>
-
-                                                <Link
-                                                    href="/manage-facilities"
-                                                    className="px-4 py-3 hover:bg-gray-100 transition"
-                                                >
-                                                    Manage My Facilities
-                                                </Link>
-
+                                            <div className="border-t border-gray-100 mt-1 pt-1">
                                                 <button
-                                                    className="text-left px-4 py-3 hover:bg-red-50 text-red-500 transition"
-                                                    onClick={handleLogout}
+                                                    onClick={() => authClient.signOut()}
+                                                    className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-50 transition-colors"
                                                 >
                                                     Logout
                                                 </button>
@@ -148,73 +142,73 @@ export default function Navbar() {
                                         </div>
                                     )}
                                 </div>
-                            </>
-                        ) : (
-                            <Link
-                                href="/login"
-                                className="px-5 py-2.5 rounded-xl bg-(--noir) hover:bg-(--noir)/90 text-white font-medium transition hidden md:block"
-                            >
-                                Login
-                            </Link>
-                        )}
+                            )}
 
-                        {/* Mobile Button */}
-                        <button
-                            onClick={() => setMobileMenu(!mobileMenu)}
-                            className="md:hidden w-11 h-11 rounded-xl border flex items-center justify-center"
-                        >
-                            {mobileMenu ? <X size={22} /> : <Menu size={22} />}
-                        </button>
+                            <button
+                                onClick={() => setMobileMenuOpen(true)}
+                                className="md:hidden w-8 h-8 flex items-center justify-center border border-gray-200 rounded-md text-gray-600 hover:bg-gray-50 transition-colors"
+                            >
+                                <HamburgerIcon />
+                            </button>
+                        </div>
                     </div>
                 </div>
+            </header>
 
-                {/* Mobile Menu */}
-                {mobileMenu && (
-                    <div className="md:hidden py-5 border-t">
-                        <div className="flex flex-col gap-4">
+            {/* Mobile Drawer */}
+            {mobileMenuOpen && (
+                <div className="fixed inset-0 z-50 md:hidden">
+                    <div
+                        className="absolute inset-0 bg-black/40"
+                        onClick={() => setMobileMenuOpen(false)}
+                    />
+                    <div className="absolute right-0 top-0 h-full w-64 bg-white shadow-xl p-4">
+                        <div className="flex justify-end">
+                            <button
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="w-8 h-8 flex items-center justify-center border border-gray-200 rounded-md text-gray-500 hover:bg-gray-50 transition-colors"
+                            >
+                                <CloseIcon />
+                            </button>
+                        </div>
 
+                        <nav className="flex flex-col mt-4">
                             {navLinks.map((link) => (
                                 <Link
-                                    key={link.name}
+                                    key={link.href}
                                     href={link.href}
-                                    className="text-gray-700 font-medium"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className="px-6 py-3.5 text-[15px] text-gray-800 hover:bg-gray-50 transition-colors border-b border-gray-50 font-medium"
                                 >
-                                    {link.name}
+                                    {link.label}
                                 </Link>
                             ))}
+                        </nav>
 
-
-                            {user &&
-                                authLinks.map((link) => (
-                                    <Link
-                                        key={link.name}
-                                        href={link.href}
-                                        className="text-gray-700 font-medium"
-                                    >
-                                        {link.name}
-                                    </Link>
-                                ))}
-
-                            {/* Mobile User */}
-                            {user ? (
+                        {/* Bottom Login / Logout */}
+                        <div className="mt-4">
+                            {!user ? (
                                 <button
-                                    onClick={handleLogout}
-                                    className="text-left text-red-500 font-medium"
+                                    onClick={() => { router.push("/login"); setMobileMenuOpen(false); }}
+                                    className="w-full bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2.5 rounded-lg"
+                                >
+                                    Login
+                                </button>
+                            ) : (
+                                <button
+                                    onClick={() => { authClient.signOut(); setMobileMenuOpen(false); }}
+                                    className="w-full border border-red-200 text-red-500 hover:bg-red-50 text-sm font-medium py-2.5 rounded-lg"
                                 >
                                     Logout
                                 </button>
-                            ) : (
-                                <Link
-                                    href="/login"
-                                    className="w-fit px-5 py-2 rounded-xl bg-(--noir) text-white"
-                                >
-                                    Login
-                                </Link>
                             )}
                         </div>
                     </div>
-                )}
-            </div>
-        </nav>
+                </div>
+            )}
+        </>
     );
-}
+};
+function HamburgerIcon() { return (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"> <line x1="3" y1="6" x2="21" y2="6" /> <line x1="3" y1="12" x2="21" y2="12" /> <line x1="3" y1="18" x2="21" y2="18" /> </svg>); }
+
+export default Navbar;

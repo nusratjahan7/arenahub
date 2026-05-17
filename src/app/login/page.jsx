@@ -28,6 +28,7 @@ const LoginPage = () => {
         if (data) {
             toast.success("Successfully logged in");
             router.push("/");
+            router.refresh();
         }
 
         if (error) {
