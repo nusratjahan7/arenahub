@@ -1,16 +1,51 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import { Eye, EyeSlash } from "@gravity-ui/icons";
 import { Button, Card, FieldError, Form, Input, InputGroup, Label, TextField } from "@heroui/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
+import { toast } from "sonner";
 
 
 const SignupPage = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [passwordValue, setPasswordValue] = useState("");
     const router = useRouter();
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const user = Object.fromEntries(formData.entries());
+
+        const { data, error } = await authClient.signUp.email({
+            email: user.email,
+            password: user.password,
+            confirmPassword: user.confirmPassword,
+            name: user.name,
+            image: user.image,
+            callbackURL: "/login"
+        })
+
+        if (data) {
+            setTimeout(() => {
+                toast.success("Account created successfully!");
+            }, 800);
+            router.push("/login");
+        }
+
+        if (error) {
+            toast.error(error.message || "Something went wrong. Please try again.");
+            return;
+        }
+    };
+
+    const handleGoogleSignIn = async () => {
+        await authClient.signIn.social({
+            provider: "google",
+        })
+    }
+
 
     return (
         <div className="flex items-center justify-center my-10">
@@ -25,7 +60,7 @@ const SignupPage = () => {
                     <Form
                         className="flex w-96 flex-col gap-4"
                         render={(props) => <form {...props} data-custom="foo" />}
-                    // onSubmit={onSubmit}
+                        onSubmit={onSubmit}
                     >
                         <TextField
                             isRequired
@@ -65,7 +100,7 @@ const SignupPage = () => {
                             minLength={8}
                             name="password"
                             type="password"
-                            // onChange={setPasswordValue}
+                            onChange={setPasswordValue}
                             validate={(value) => {
                                 if (value.length < 8) {
                                     return "Password must be at least 8 characters";
@@ -145,7 +180,7 @@ const SignupPage = () => {
                     <div className="divider text-(--text2) h-0.5">Or sign up with</div>
                     <div className="flex flex-col items-center justify-center gap-2">
                         <button
-                            // onClick={handleGoogleSignIn} 
+                            onClick={handleGoogleSignIn}
                             className="btn w-full bg-white text-black border-[#e5e5e5] rounded-2xl">
                             <FcGoogle className="h-4 w-4" />
                             Sign up with Google

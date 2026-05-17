@@ -1,16 +1,47 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import { Eye, EyeSlash } from "@gravity-ui/icons";
 import { Button, Card, FieldError, Form, Input, InputGroup, Label, TextField } from "@heroui/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
+import { toast } from "sonner";
 
 
 
 const LoginPage = () => {
     const [isVisible, setIsVisible] = useState(false);
     const router = useRouter();
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const user = Object.fromEntries(formData.entries());
+
+        const { data, error } = await authClient.signIn.email({
+            email: user.email,
+            password: user.password,
+            callbackURL: "/"
+
+        })
+
+        if (data) {
+            toast.success("Successfully logged in");
+            router.push("/");
+        }
+
+        if (error) {
+            toast.error(error.message || "Something went wrong. Please try again.");
+            return;
+        }
+
+    };
+    const handleGoogleSignIn = async () => {
+        await authClient.signIn.social({
+            provider: "google",
+        });
+        router.refresh();
+    }
 
 
     return (
@@ -24,7 +55,7 @@ const LoginPage = () => {
                     <Form
                         className="flex w-96 flex-col gap-4"
                         render={(props) => <form {...props} data-custom="foo" />}
-                    // onSubmit={onSubmit}
+                        onSubmit={onSubmit}
                     >
 
 
@@ -95,7 +126,7 @@ const LoginPage = () => {
                     <div className="divider text-(--text2) h-0.5">Or sign up with</div>
                     <div className="flex flex-col items-center justify-center gap-2">
                         <button
-                            // onClick={handleGoogleSignIn} 
+                            onClick={handleGoogleSignIn}
                             className="btn w-full bg-white text-black border-[#e5e5e5] rounded-2xl">
                             <FcGoogle className="h-4 w-4" />
                             Sign up with Google
