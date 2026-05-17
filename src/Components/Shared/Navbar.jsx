@@ -61,7 +61,7 @@ const Navbar = () => {
                             <div className="w-8 h-8 bg-(--noir) text-white rounded-lg flex items-center justify-center">
                                 <TrophyIcon />
                             </div>
-                            <span className="text-[15px] font-semibold text-gray-900 tracking-tight">
+                            <span className="text-[15px] font-bold text-(--noir) tracking-tight">
                                 ArenaHub
                             </span>
                         </Link>
