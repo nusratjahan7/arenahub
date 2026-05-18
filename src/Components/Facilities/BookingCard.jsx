@@ -7,16 +7,15 @@ import { toast } from 'sonner';
 import { FiArrowRight } from 'react-icons/fi';
 
 const BookingCard = ({ facility }) => {
-    const { _id, facilityName, price, slots } = facility;
+    const { _id, facilityName, price, slots, imageUrl } = facility;
     const [hours, setHours] = useState(1);
-    const [selectedSlot, setSelectedSlot] = useState(new Set([]));
+    const [selectedSlot, setSelectedSlot] = useState('');
     const [date, setDate] = useState('');
     const [booked, setBooked] = useState(false);
 
     const { data: session } = authClient.useSession();
     const user = session?.user;
 
-    const slotValue = selectedSlot.size > 0 ? [...selectedSlot][0] : '';
     const total = (price * hours).toFixed(2);
 
     const handleBooking = async () => {
@@ -32,8 +31,9 @@ const BookingCard = ({ facility }) => {
                     userEmail: user?.email,
                     facilityId: _id,
                     facilityName,
+                    imageUrl,
                     date,
-                    slot: slotValue,
+                    slot: selectedSlot,
                     hours,
                     totalPrice: Number(total),
                 }),
@@ -80,7 +80,7 @@ const BookingCard = ({ facility }) => {
                 <Select
                     placeholder="Choose a slot"
                     selectedKeys={selectedSlot}
-                    onSelectionChange={setSelectedSlot}
+                    onSelectionChange={(key) => setSelectedSlot(key)}
                     className="w-full"
                 >
                     <Label className="text-sm font-medium text-gray-700">Time slot</Label>
