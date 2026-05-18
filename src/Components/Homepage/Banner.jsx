@@ -19,6 +19,7 @@ const Banner = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
+                        viewport={{ once: true }}
                         className='text-sm uppercase tracking-widest text-(--text3) mb-6'
                     >
                         Now booking 1,200+ venues
@@ -28,6 +29,7 @@ const Banner = () => {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.15 }}
+                        viewport={{ once: true }}
                         className='font1 text-4xl md:text-6xl font-bold leading-[1.1] mb-6'>
                         Book the perfect  <span className='text-(--moss2) italic'>sports <br /> arena </span> in seconds.
                     </motion.h1>
@@ -36,6 +38,7 @@ const Banner = () => {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.3 }}
+                        viewport={{ once: true }}
                         className='text-lg text-[#cdd0d4] mb-9 max-w-lg'>
                         We combine cutting-edge technology with time-honored farming practices to deliver sustainable, high-yield agricultural solutions for the modern world.
                     </motion.p>
@@ -44,6 +47,7 @@ const Banner = () => {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.45 }}
+                        viewport={{ once: true }}
                         className='flex gap-4 items-center justify-center'>
                         <Button className=" bg-(--moss2) rounded-full text-(--green) font-bold  ">
                             <Link href="/facilities" className='inline-flex items-center gap-1.5'>Explore Facilities <MdArrowRightAlt /></Link>
@@ -56,6 +60,7 @@ const Banner = () => {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.45 }}
+                        viewport={{ once: true }}
                         className='flex gap-4 items-center justify-center mt-7'>
                         <p className="flex items-center gap-2 text-(--text3)"><FaStar className="text-(--moss2)" /> 4.9 average</p>
                         <p className="flex items-center gap-2 text-(--text3)"><SlCalender className="text-(--moss2)" />Instant booking</p>
