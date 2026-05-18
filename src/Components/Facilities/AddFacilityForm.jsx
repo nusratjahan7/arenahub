@@ -15,7 +15,7 @@ const AddFacilityForm = ({ userId }) => {
         const formData = new FormData(e.currentTarget);
         const facility = Object.fromEntries(formData.entries());
 
-
+        const { data: tokenData } = await authClient.token();
         const payload = {
             ...facility,
             userId,
@@ -27,7 +27,10 @@ const AddFacilityForm = ({ userId }) => {
         try {
             const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/facility`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    authorization: `Bearer ${tokenData?.token}`
+                },
                 body: JSON.stringify(payload),
             });
 

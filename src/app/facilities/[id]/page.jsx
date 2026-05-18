@@ -4,7 +4,13 @@ import BookingCard from '@/Components/Facilities/BookingCard';
 
 const FacilityDetails = async ({ params }) => {
     const { id } = await params;
+    const token = await auth.api.getToken({
+        headers: await headers()
+    });
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/facility/${id}`, {
+        headers: {
+            authorization: `Bearer ${token}`
+        },
         cache: 'no-store',
     });
     const facility = await res.json();

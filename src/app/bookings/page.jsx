@@ -10,8 +10,14 @@ import BookingCancel from '@/Components/Facilities/BookingCancel';
 const MyBookings = async () => {
     const session = await auth.api.getSession({ headers: await headers() });
     const user = session?.user;
+    const token = await auth.api.getToken({
+        headers: await headers()
+    });
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking/${user?.id}`, {
+        headers: {
+            authorization: `Bearer ${token}`
+        },
         cache: 'no-store',
     });
     const bookings = await res.json();

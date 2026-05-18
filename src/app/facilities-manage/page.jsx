@@ -3,14 +3,17 @@ import EditModal from "@/Components/EditModal";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import Image from "next/image";
-import { FiEdit } from "react-icons/fi";
-import { RiDeleteBin5Fill, RiDeleteBinLine } from "react-icons/ri";
 
 const ManageFacility = async () => {
     const session = await auth.api.getSession({ headers: await headers() });
     const user = session?.user;
-
+    const token = await auth.api.getToken({
+        headers: await headers()
+    });
     const facilityRes = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/facility?userId=${user?.id}`, {
+        headers: {
+            authorization: `Bearer ${token}`
+        },
         cache: 'no-store'
     });
     const facilities = await facilityRes.json();

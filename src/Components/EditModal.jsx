@@ -16,13 +16,15 @@ const EditModal = ({ facility }) => {
 
     const [isPending, startTransition] = useTransition();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
         const formData = new FormData(e.currentTarget);
 
+        const { data: tokenData } = await authClient.token()
+
         startTransition(async () => {
-            await updateFacility(_id, formData);
+            await updateFacility(_id, formData, tokenData);
         });
         setIsSubmitting(false);
     };
