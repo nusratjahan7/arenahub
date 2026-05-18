@@ -1,24 +1,7 @@
 "use client"
-import { useEffect } from "react";
 import { IoFootball } from "react-icons/io5";
 
 const Loading = () => {
-
-    useEffect(() => {
-        const delays = [300, 600, 900];
-        const timers = delays.map((delay, i) =>
-            setTimeout(
-                () =>
-                    setVisibleChips((prev) => {
-                        const next = [...prev];
-                        next[i] = true;
-                        return next;
-                    }),
-                delay
-            )
-        );
-        return () => timers.forEach(clearTimeout);
-    }, []);
 
     return (
         <div className="relative min-h-screen flex flex-col items-center justify-center px-6 py-10 overflow-hidden bg-white">
