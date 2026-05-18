@@ -33,7 +33,7 @@ const MyBookings = async () => {
 
             {/* Empty State */}
             {bookings.length === 0 ? (
-                <div className="flex flex-col items-center justify-center py-24 gap-5 text-center">
+                <div className="flex flex-col items-center justify-center py-10 gap-5 text-center">
                     <div className="w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center">
                         <BsCalendarX className="w-9 h-9 text-gray-400" />
                     </div>
