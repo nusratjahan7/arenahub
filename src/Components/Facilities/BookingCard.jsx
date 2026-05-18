@@ -20,6 +20,15 @@ const BookingCard = ({ facility }) => {
 
     const handleBooking = async () => {
 
+        if (!date) {
+            toast.error("Please select a booking date.");
+            return;
+        }
+        if (!selectedSlot || selectedSlot.size === 0) {
+            toast.error("Please choose a time slot.");
+            return;
+        }
+
         try {
             const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking`, {
                 method: 'POST',
@@ -71,6 +80,7 @@ const BookingCard = ({ facility }) => {
                     onChange={(e) => setDate(e.target.value)}
                     min={new Date().toISOString().split('T')[0]}
                     disabled={booked}
+                    required
                     className="rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-700 focus:outline-none focus:border-blue-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 />
             </div>
