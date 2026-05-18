@@ -2,19 +2,18 @@
 import { Button } from "@heroui/react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { BiRightArrow } from "react-icons/bi";
 import { FaStar } from "react-icons/fa";
 import { MdArrowRightAlt, MdVerifiedUser } from "react-icons/md";
 import { SlCalender } from "react-icons/sl";
 const Banner = () => {
     return (
-        <div className="relative bg-[url('/assets/tenis.jpg')] text-white flex justify-between flex-col items-center bg-no-repeat bg-cover gap-5 h-131 md:h-135">
+        <div className="relative bg-[url('/assets/tenis.jpg')] text-white flex justify-between flex-col items-center bg-no-repeat bg-cover gap-5 min-h-screen md:h-140">
             {/* Overlay */}
             <div className="absolute inset-0 bg-[#000000] opacity-40"></div>
 
             {/* Content */}
             <div className="relative z-10">
-                <div className='max-w-2xl text-center mt-28 md:mt-20'>
+                <div className='max-w-2xl text-center mt-30 sm:mt-28 md:mt-20'>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -39,7 +38,7 @@ const Banner = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.3 }}
                         viewport={{ once: true }}
-                        className='text-lg text-[#cdd0d4] mb-9 max-w-lg'>
+                        className='text-lg text-[#cdd0d4] mb-9 max-w-lg px-3 md:px-0'>
                         We combine cutting-edge technology with time-honored farming practices to deliver sustainable, high-yield agricultural solutions for the modern world.
                     </motion.p>
 
@@ -61,7 +60,7 @@ const Banner = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.45 }}
                         viewport={{ once: true }}
-                        className='flex gap-4 items-center justify-center mt-7'>
+                        className='flex gap-4 items-center justify-center mt-7 mb-5 px-4 md:px-0'>
                         <p className="flex items-center gap-2 text-(--text3)"><FaStar className="text-(--moss2)" /> 4.9 average</p>
                         <p className="flex items-center gap-2 text-(--text3)"><SlCalender className="text-(--moss2)" />Instant booking</p>
                         <p className="flex items-center gap-2 text-(--text3)"><MdVerifiedUser className="text-(--moss2)" />Verified venues</p>
