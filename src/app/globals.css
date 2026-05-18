@@ -12,3 +12,12 @@
   --text2: #6C696D;
   --text3: #d0ccd1;
 }
+
+[data-focused="true"] {
+  outline: none !important;
+}
+
+[data-focus-visible="true"] {
+  outline: none !important;
+
+}

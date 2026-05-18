@@ -57,68 +57,71 @@ const AddFacilityForm = ({ userId }) => {
                 {/* Facility Name */}
                 <div className="md:col-span-2">
                     <TextField name="facilityName" isRequired>
-                        <Label>Facility Name</Label>
-                        <Input placeholder="Enter your facility name" className="rounded-2xl" />
+                        <Label className="text-gray-700">Facility Name</Label>
+                        <Input placeholder="Enter your facility name" className="rounded-2xl p-3" />
                         <FieldError />
                     </TextField>
                 </div>
 
                 {/* Type */}
-                <div>
-                    <Select name="type" isRequired className="w-full" placeholder="Select type">
-                        <Label>Facility type</Label>
-                        <Select.Trigger className="rounded-2xl">
-                            <Select.Value />
-                            <Select.Indicator />
-                        </Select.Trigger>
-                        <Select.Popover>
-                            <ListBox>
-                                {['Football', 'Basketball', 'Tennis', 'Swimming', 'Cricket', 'Gym', 'Badminton', 'Volleyball', 'Other'].map((type) => (
-                                    <ListBox.Item key={type} id={type} textValue={type}>
-                                        {type}
-                                        <ListBox.ItemIndicator />
-                                    </ListBox.Item>
-                                ))}
-                            </ListBox>
-                        </Select.Popover>
-                    </Select>
+                <div className="flex flex-col gap-1.5">
+                    <label className="text-sm font-medium text-gray-700 mb-0.5">
+                        Facility type <span className="text-red-500">*</span>
+                    </label>
+                    <div className="w-full">
+                        <Select name="type" isRequired className="w-full border-none shadow-sm rounded-2xl focus-within:ring-2 [&_button]:outline-none [&_button]:ring-0 [&_button]:shadow-none [&_button]:border-none" placeholder="Select type">
+                            <Select.Trigger className="w-full border-none outline-none ring-0 shadow-none bg-transparent px-4 h-11 text-sm text-gray-700">
+                                <Select.Value placeholder="Select type" />
+                            </Select.Trigger>
+                            <Select.Popover className="rounded-xl border border-gray-200 shadow-md bg-white">
+                                <ListBox>
+                                    {['Football', 'Basketball', 'Tennis', 'Swimming', 'Cricket', 'Gym', 'Badminton', 'Volleyball', 'Other'].map((type) => (
+                                        <ListBox.Item key={type} id={type} textValue={type} className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">
+                                            {type}
+                                            <ListBox.ItemIndicator />
+                                        </ListBox.Item>
+                                    ))}
+                                </ListBox>
+                            </Select.Popover>
+                        </Select>
+                    </div>
                 </div>
 
                 {/* Location */}
                 <TextField name="location" isRequired>
-                    <Label>Location</Label>
-                    <Input placeholder="Dhaka" className="rounded-2xl" />
+                    <Label className="text-gray-700">Location</Label>
+                    <Input placeholder="Dhaka" className="rounded-2xl  p-3" />
                     <FieldError />
                 </TextField>
 
                 {/* Image URL */}
                 <div className="md:col-span-2">
                     <TextField name="imageUrl" isRequired>
-                        <Label>Image URL</Label>
-                        <Input type="url" placeholder="https://i.ibb.co/..." className="rounded-2xl" />
+                        <Label className="text-gray-700">Image URL</Label>
+                        <Input type="url" placeholder="https://i.ibb.co/..." className="rounded-2xl  p-3" />
                         <FieldError />
                     </TextField>
                 </div>
 
                 {/* Price */}
                 <TextField name="price" isRequired>
-                    <Label>Price per hour ($)</Label>
-                    <Input type="number" placeholder="0" className="rounded-2xl" />
+                    <Label className="text-gray-700">Price per hour ($)</Label>
+                    <Input type="number" placeholder="0" className="rounded-2xl  p-3" />
                     <FieldError />
                 </TextField>
 
                 {/* Capacity */}
                 <TextField name="capacity" isRequired>
-                    <Label>Capacity</Label>
-                    <Input type="number" placeholder="1" className="rounded-2xl" />
+                    <Label className="text-gray-700">Capacity</Label>
+                    <Input type="number" placeholder="1" className="rounded-2xl  p-3" />
                     <FieldError />
                 </TextField>
 
                 {/* Time Slots */}
                 <div className="md:col-span-2 flex flex-col gap-2 w-full">
                     <TextField name="slots" isRequired>
-                        <Label>Available time slots</Label>
-                        <Input placeholder="08:00-09:00, 09:00-10:00, 18:00-19:00" />
+                        <Label className="text-gray-700">Available time slots</Label>
+                        <Input placeholder="08:00-09:00, 09:00-10:00, 18:00-19:00" className=" p-3" />
                         <FieldError />
                     </TextField>
                     <span className="text-slate-400 text-xs mt-0.5">
@@ -144,8 +147,8 @@ const AddFacilityForm = ({ userId }) => {
                 {/* Description */}
                 <div className="md:col-span-2">
                     <TextField name="description" isRequired>
-                        <Label>Description</Label>
-                        <TextArea placeholder="Describe the facility..." rows={4} className="rounded-2xl" />
+                        <Label className="text-gray-700">Description</Label>
+                        <TextArea placeholder="Describe the facility..." rows={4} className="rounded-2xl  p-3" />
                         <FieldError />
                     </TextField>
                 </div>

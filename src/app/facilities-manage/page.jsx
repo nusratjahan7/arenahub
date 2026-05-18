@@ -1,4 +1,5 @@
 import DeleteAlert from "@/Components/DeleteAlert";
+import EditModal from "@/Components/EditModal";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import Image from "next/image";
@@ -64,9 +65,7 @@ const ManageFacility = async () => {
                                         </span>
                                     </td>
                                     <td className="px-5 py-4 flex gap-2">
-                                        <button className="text-gray-500 hover:text-gray-700 text-xs font-medium border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50 transition-colors">
-                                            <FiEdit className="h-4 w-4" />
-                                        </button>
+                                        <EditModal facility={facility} />
                                         <DeleteAlert facility={facility} />
                                     </td>
                                 </tr>
