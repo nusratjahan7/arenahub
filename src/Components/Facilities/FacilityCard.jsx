@@ -1,11 +1,18 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 const FacilityCard = ({ facility }) => {
     const { _id, facilityName, type, description, imageUrl, location, capacity, price } = facility;
 
     return (
-        <div className="rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden bg-white flex flex-col">
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9 }}
+            className="rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden bg-white flex flex-col">
             {/* Image */}
             <div className="relative h-44 w-full overflow-hidden">
                 <Image
@@ -64,7 +71,7 @@ const FacilityCard = ({ facility }) => {
                     </Link>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 
