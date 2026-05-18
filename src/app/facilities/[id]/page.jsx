@@ -4,6 +4,13 @@ import BookingCard from '@/Components/Facilities/BookingCard';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 
+export async function generateMetadata({ params }) {
+    return {
+        title: "ArenaHub | Facility Details",
+        description: "View facility details",
+    };
+}
+
 const FacilityDetails = async ({ params }) => {
     const { id } = await params;
     const token = await auth.api.getToken({

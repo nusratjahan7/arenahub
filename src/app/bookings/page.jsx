@@ -6,6 +6,9 @@ import { BsCalendarX } from 'react-icons/bs';
 import Image from 'next/image';
 import BookingCancel from '@/Components/Facilities/BookingCancel';
 
+export const metadata = {
+    title: "ArenaHub | My Bookings",
+};
 
 const MyBookings = async () => {
     const session = await auth.api.getSession({ headers: await headers() });

@@ -2,7 +2,11 @@ import AddFacilityForm from '@/Components/Facilities/AddFacilityForm';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 
-
+export async function generateMetadata({ params }) {
+    return {
+        title: "ArenaHub | Add Facility",
+    };
+}
 const AddFacilities = async () => {
     const session = await auth.api.getSession({
         headers: await headers(),

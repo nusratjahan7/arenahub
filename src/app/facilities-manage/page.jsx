@@ -4,6 +4,12 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import Image from "next/image";
 
+export async function generateMetadata({ params }) {
+    return {
+        title: "ArenaHub | Manage Facility",
+    };
+}
+
 const ManageFacility = async () => {
     const session = await auth.api.getSession({ headers: await headers() });
     const user = session?.user;
