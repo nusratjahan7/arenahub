@@ -133,7 +133,11 @@ const Navbar = () => {
 
                                             <div className="border-t border-gray-100 mt-1 pt-1">
                                                 <button
-                                                    onClick={() => authClient.signOut()}
+                                                    onClick={async () => {
+                                                        await authClient.signOut();
+                                                        setMobileMenuOpen(false);
+                                                        router.push('/');
+                                                    }}
                                                     className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-50 transition-colors"
                                                 >
                                                     Logout
@@ -196,7 +200,11 @@ const Navbar = () => {
                                 </button>
                             ) : (
                                 <button
-                                    onClick={() => { authClient.signOut(); setMobileMenuOpen(false); }}
+                                    onClick={async () => {
+                                        await authClient.signOut();
+                                        setMobileMenuOpen(false);
+                                        router.push('/');
+                                    }}
                                     className="w-full border border-red-200 text-red-500 hover:bg-red-50 text-sm font-medium py-2.5 rounded-lg"
                                 >
                                     Logout

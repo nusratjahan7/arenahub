@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import { AlertDialog, Button } from "@heroui/react";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { toast } from "sonner";

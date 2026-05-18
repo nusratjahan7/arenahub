@@ -1,5 +1,6 @@
 "use client";
 import { updateFacility } from "@/lib/action";
+import { authClient } from "@/lib/auth-client";
 import { Button, FieldError, Input, Label, ListBox, Modal, Surface, TextArea, TextField, Select, Form, Chip, AlertDialog } from "@heroui/react";
 import { useState, useTransition } from "react";
 import { FiEdit } from "react-icons/fi";

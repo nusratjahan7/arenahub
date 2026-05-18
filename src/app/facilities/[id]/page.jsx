@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import BookingCard from '@/Components/Facilities/BookingCard';
+import { auth } from '@/lib/auth';
+import { headers } from 'next/headers';
 
 const FacilityDetails = async ({ params }) => {
     const { id } = await params;
@@ -9,7 +11,7 @@ const FacilityDetails = async ({ params }) => {
     });
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/facility/${id}`, {
         headers: {
-            authorization: `Bearer ${token}`
+            authorization: `Bearer ${token.token}`
         },
         cache: 'no-store',
     });
@@ -25,6 +27,12 @@ const FacilityDetails = async ({ params }) => {
         price,
         slots,
     } = facility;
+
+    const slotsArray = Array.isArray(slots)
+        ? slots
+        : typeof slots === 'string'
+            ? slots.split(',')
+            : [];
 
     return (
         <div className="min-h-screen bg-gray-50">
@@ -48,13 +56,19 @@ const FacilityDetails = async ({ params }) => {
                     <div className="space-y-6">
                         {/* Image */}
                         <div className="rounded-2xl overflow-hidden h-72 sm:h-96 w-full">
-                            <Image
-                                height={400}
-                                width={400}
-                                src={imageUrl}
-                                alt={facilityName}
-                                className="w-full h-full object-cover"
-                            />
+                            {imageUrl ? (
+                                <Image
+                                    src={imageUrl}
+                                    height={400}
+                                    width={400}
+                                    alt={facilityName}
+                                    className="w-full h-full object-cover"
+                                />
+                            ) : (
+                                <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                                    <span className="text-gray-400 text-sm">No image available</span>
+                                </div>
+                            )}
                         </div>
 
                         {/* Title row */}
@@ -93,7 +107,7 @@ const FacilityDetails = async ({ params }) => {
                         <div className="space-y-3">
                             <h3 className="font-semibold text-gray-800 text-sm">Available time slots</h3>
                             <div className="flex flex-wrap gap-2">
-                                {slots?.map((slot, i) => (
+                                {slotsArray.map((slot, i) => (
                                     <span
                                         key={i}
                                         className="inline-flex items-center gap-1.5 text-xs font-medium border border-gray-200 bg-white text-gray-600 px-3 py-1.5 rounded-full"

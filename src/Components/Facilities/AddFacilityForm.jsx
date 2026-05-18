@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Button, FieldError, Input, Label, TextField, Select, ListBox, TextArea, Chip, Form } from '@heroui/react';
 import { toast } from 'sonner';
-import { redirect } from 'next/dist/server/api-utils';
+import { authClient } from '@/lib/auth-client';
 
 const AddFacilityForm = ({ userId }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);

@@ -8,6 +8,11 @@ import { FiArrowRight } from 'react-icons/fi';
 
 const BookingCard = ({ facility }) => {
     const { _id, facilityName, price, slots, imageUrl } = facility;
+    const slotsArray = Array.isArray(slots)
+        ? slots
+        : typeof slots === 'string'
+            ? slots.split(',')
+            : [];
     const [hours, setHours] = useState(1);
     const [selectedSlot, setSelectedSlot] = useState('');
     const [date, setDate] = useState('');
@@ -99,7 +104,7 @@ const BookingCard = ({ facility }) => {
                     </Select.Trigger>
                     <Select.Popover className="max-w-80 rounded-xl border border-gray-200 shadow-md bg-white">
                         <ListBox>
-                            {slots?.map((slot) => (
+                            {slotsArray.map((slot) => (
                                 <ListBox.Item key={slot} id={slot} textValue={slot} className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">
                                     {slot}
                                     <ListBox.ItemIndicator />
