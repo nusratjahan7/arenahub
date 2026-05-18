@@ -77,21 +77,20 @@ const BookingCard = ({ facility }) => {
 
             {/* Time Slot */}
             <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-medium text-gray-700">Time slot</label>
                 <Select
                     placeholder="Choose a slot"
                     selectedKeys={selectedSlot}
                     onSelectionChange={(key) => setSelectedSlot(key)}
-                    className="w-full"
+                    className="w-full rounded-xl border border-gray-200 bg-white"
                 >
-                    <Label className="text-sm font-medium text-gray-700">Time slot</Label>
-                    <Select.Trigger className="rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm">
-                        <Select.Value />
-                        <Select.Indicator />
+                    <Select.Trigger className="w-full border-none outline-none ring-0 shadow-none bg-transparent px-4 h-11 text-sm text-gray-700">
+                        <Select.Value placeholder="Choose a slot" />
                     </Select.Trigger>
-                    <Select.Popover>
+                    <Select.Popover className="max-w-80 rounded-xl border border-gray-200 shadow-md bg-white">
                         <ListBox>
                             {slots?.map((slot) => (
-                                <ListBox.Item key={slot} id={slot} textValue={slot}>
+                                <ListBox.Item key={slot} id={slot} textValue={slot} className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">
                                     {slot}
                                     <ListBox.ItemIndicator />
                                 </ListBox.Item>
