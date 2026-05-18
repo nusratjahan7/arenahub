@@ -54,7 +54,7 @@ const SignupPage = () => {
 
                 <Card className="shadow-sm border border-gray-200/30 rounded-2xl p-9">
                     <div className="text-left mb-6">
-                        <h1 className="text-3xl font-medium font-serif">Create Account</h1>
+                        <h1 className="text-3xl font-serif font-bold text-(--green)">Create Account</h1>
                         <p className="text-(--text2)">Book courts and list your own facilities.</p>
                     </div>
                     <Form

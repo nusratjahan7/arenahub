@@ -50,7 +50,7 @@ const LoginPage = () => {
             <div>
                 <Card className="shadow-sm border border-gray-200/30 rounded-2xl p-9">
                     <div className="text-left mb-6">
-                        <h1 className="text-3xl font-medium font-serif">Welcome Back</h1>
+                        <h1 className="text-3xl font-serif font-bold text-(--green)">Welcome Back</h1>
                         <p className="text-(--text2)">Sign in to book and manage facilities</p>
                     </div>
                     <Form

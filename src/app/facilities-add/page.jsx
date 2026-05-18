@@ -12,7 +12,7 @@ const AddFacilities = async () => {
     return (
         <div className='w-11/12 mx-auto my-9'>
             <div className='md:w-1/2 mx-auto'>
-                <h1 className='text-4xl font-serif'>Add a facility</h1>
+                <h1 className="text-3xl font-serif font-bold text-(--green)">Add a Facility</h1>
                 <p className='text-(--text2)'>Reach thousands of players in your city.</p>
             </div>
 

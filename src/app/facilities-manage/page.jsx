@@ -21,7 +21,7 @@ const ManageFacility = async () => {
     return (
         <div className="w-11/12 max-w-5xl mx-auto my-10 space-y-6">
             <div>
-                <h1 className="text-3xl font-bold text-gray-900">Manage Facilities</h1>
+                <h1 className="text-3xl font-serif font-bold text-(--green)">Manage Facilities</h1>
                 <p className="text-sm text-gray-500 mt-1">Overview of your listed facilities.</p>
             </div>
 

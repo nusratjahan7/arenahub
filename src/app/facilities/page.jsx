@@ -23,7 +23,7 @@ const AllFacilities = () => {
         <div className="w-11/12 mx-auto my-9 space-y-6">
             {/* Header */}
             <div className="space-y-1">
-                <h1 className="font-serif text-3xl text-gray-900">All Facilities</h1>
+                <h1 className="text-3xl font-serif font-bold text-(--green)">All Facilities</h1>
                 <p className="text-xs text-gray-500">
                     {facilities.length} facili{facilities.length !== 1 ? "ties" : "ty"} ready to book.
                 </p>
