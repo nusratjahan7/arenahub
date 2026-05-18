@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { MdSportsSoccer } from 'react-icons/md';
 import { BsCalendarX } from 'react-icons/bs';
 import Image from 'next/image';
+import BookingCancel from '@/Components/Facilities/BookingCancel';
 
 
 const MyBookings = async () => {
@@ -14,7 +15,6 @@ const MyBookings = async () => {
         cache: 'no-store',
     });
     const bookings = await res.json();
-    console.log(bookings)
 
     return (
         <div className="w-11/12 max-w-5xl mx-auto my-10 space-y-6">
@@ -81,14 +81,12 @@ const MyBookings = async () => {
                                         <td className="px-5 py-4 text-gray-600">{booking.hours}</td>
                                         <td className="px-5 py-4 font-medium text-gray-800">${booking.totalPrice?.toFixed(2)}</td>
                                         <td className="px-5 py-4">
-                                            <span>Confirm</span>
+                                            <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-700 border border-green-200">
+                                                Confirmed
+                                            </span>
                                         </td>
                                         <td className="px-5 py-4">
-                                            {booking.status !== 'cancelled' && (
-                                                <button className="text-xs font-medium border border-gray-200 text-gray-600 hover:border-red-300 hover:text-red-600 px-3 py-1.5 rounded-lg transition-colors">
-                                                    Cancel
-                                                </button>
-                                            )}
+                                            <BookingCancel bookingId={booking._id} facilityName={booking.facilityName} />
                                         </td>
                                     </tr>
                                 ))}
@@ -112,7 +110,9 @@ const MyBookings = async () => {
                                     )}
                                     <div>
                                         <p className="font-semibold text-gray-800">{booking.facilityName}</p>
-                                        <span>Confirm</span>
+                                        <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-700 border border-green-200">
+                                            Confirmed
+                                        </span>
                                     </div>
                                 </div>
                                 <div className="grid grid-cols-2 gap-2 text-sm text-gray-600">
@@ -133,11 +133,7 @@ const MyBookings = async () => {
                                         <p className="font-medium text-gray-700">${booking.totalPrice?.toFixed(2)}</p>
                                     </div>
                                 </div>
-                                {booking.status !== 'cancelled' && (
-                                    <button className="w-full text-sm font-medium border border-gray-200 text-gray-600 hover:border-red-300 hover:text-red-600 py-2 rounded-xl transition-colors">
-                                        Cancel Booking
-                                    </button>
-                                )}
+                                <BookingCancel bookingId={booking._id} facilityName={booking.facilityName} />
                             </div>
                         ))}
                     </div>
