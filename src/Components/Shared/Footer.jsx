@@ -49,13 +49,13 @@ const Footer = () => {
                 <div>
                     <h4 className="text-sm font-semibold">Follow us</h4>
                     <div className="mt-4 flex items-center gap-3">
-                        <a href="#" className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 text-gray-700 transition-colors hover:bg-primary hover:text-gray-900" aria-label="Facebook">
+                        <a href="#" className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 text-gray-700 transition-colors hover:bg-gray-200 hover:text-gray-900" aria-label="Facebook">
                             <FaFacebook className="h-4 w-4" />
                         </a>
-                        <a href="#" className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 text-gray-700 transition-colors hover:bg-primary hover:text-gray-900" aria-label="Instagram">
+                        <a href="#" className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 text-gray-700 transition-colors hover:bg-gray-200 hover:text-gray-900" aria-label="Instagram">
                             <FaInstagram className="h-4 w-4" />
                         </a>
-                        <a href="#" className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 text-gray-700 transition-colors hover:bg-primary hover:text-gray-900" aria-label="X">
+                        <a href="#" className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 text-gray-700 transition-colors hover:bg-gray-200 hover:text-gray-900" aria-label="X">
                             <PiXLogo className="h-4 w-4" />
                         </a>
                     </div>
