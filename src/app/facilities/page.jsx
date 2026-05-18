@@ -1,10 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import FacilityCard from "@/Components/Facilities/FacilityCard";
-import { ListBox, Select } from "@heroui/react";
 import { TypeDropdown } from "@/Components/TypeDropdown";
 
-const types = ['Football', 'Basketball', 'Tennis', 'Swimming', 'Cricket', 'Gym', 'Badminton', 'Volleyball'];
 
 const AllFacilities = () => {
     const [facilities, setFacilities] = useState([]);
