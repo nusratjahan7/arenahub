@@ -190,7 +190,7 @@ const Navbar = () => {
                             {!user ? (
                                 <button
                                     onClick={() => { router.push("/login"); setMobileMenuOpen(false); }}
-                                    className="w-full bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2.5 rounded-lg"
+                                    className="w-full bg-(--noir) hover:bg-(--noir)/90 text-white text-sm font-medium py-2.5 rounded-lg"
                                 >
                                     Login
                                 </button>
