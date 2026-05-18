@@ -16,7 +16,7 @@ const Navbar = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const dropdownRef = useRef(null);
 
-    const { data: session, isPending } = authClient.useSession();
+    const { data: session } = authClient.useSession();
     const user = session?.user;
 
     useEffect(() => {
