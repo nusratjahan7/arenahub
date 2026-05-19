@@ -7,13 +7,13 @@ import { MdArrowRightAlt, MdVerifiedUser } from "react-icons/md";
 import { SlCalender } from "react-icons/sl";
 const Banner = () => {
     return (
-        <div className="relative bg-[url('/assets/tenis.jpg')] text-white flex justify-between flex-col items-center bg-no-repeat bg-cover gap-5 min-h-screen md:h-140">
+        <div className="relative bg-[url('/assets/tenis.jpg')] text-white flex justify-between flex-col items-center bg-no-repeat bg-cover gap-5 h-100 md:h-140">
             {/* Overlay */}
             <div className="absolute inset-0 bg-[#000000] opacity-40"></div>
 
             {/* Content */}
             <div className="relative z-10">
-                <div className='max-w-2xl text-center mt-30 sm:mt-28 md:mt-20'>
+                <div className='max-w-2xl text-center mt-25 md:mt-20'>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
