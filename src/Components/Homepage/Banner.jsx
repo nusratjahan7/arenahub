@@ -38,7 +38,7 @@ const Banner = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.3 }}
                         viewport={{ once: true }}
-                        className='text-lg text-[#cdd0d4] mb-9 max-w-lg px-3 md:px-0'>
+                        className='text-lg text-[#cdd0d4] mb-9 max-w-lg px-4 md:px-0'>
                         We combine cutting-edge technology with time-honored farming practices to deliver sustainable, high-yield agricultural solutions for the modern world.
                     </motion.p>
 
