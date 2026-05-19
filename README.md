@@ -3,7 +3,7 @@
 > **Book the perfect sports arena in seconds.**  
 > A modern, full-stack sports facility booking platform where users can discover, book, and manage football fields, cricket grounds, badminton courts, gyms, and more — all in one place.
 
-![ArenaHub Banner](https://images.unsplash.com/photo-1570498839593-e565b39455fc?w=1200&auto=format&fit=crop&q=60)
+![ArenaHub Banner](/assets/banner.png)
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-arenahub--eta.vercel.app-brightgreen?style=for-the-badge)](https://arenahub-eta.vercel.app)
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
@@ -273,14 +273,8 @@ Contributions are welcome! Please follow these steps:
 
 ---
 
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
 <div align="center">
   <p>Built with ❤️ for athletes everywhere.</p>
   <a href="https://arenahub-eta.vercel.app">🌐 Live Demo</a> · 
-  <a href="mailto:hello@arenahub.app">📧 Contact</a>
+  <a href="mailto:nusratjahan77222@gmail.com">📧 Contact</a>
 </div>
