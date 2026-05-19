@@ -54,7 +54,7 @@ const LoginPage = () => {
                         <p className="text-(--text2)">Sign in to book and manage facilities</p>
                     </div>
                     <Form
-                        className="flex w-96 flex-col gap-4"
+                        className="flex md:w-96 flex-col gap-4"
                         render={(props) => <form {...props} data-custom="foo" />}
                         onSubmit={onSubmit}
                     >

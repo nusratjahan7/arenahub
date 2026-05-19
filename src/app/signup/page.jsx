@@ -58,7 +58,7 @@ const SignupPage = () => {
                         <p className="text-(--text2)">Book courts and list your own facilities.</p>
                     </div>
                     <Form
-                        className="flex w-96 flex-col gap-4"
+                        className="flex md:w-96 flex-col gap-4"
                         render={(props) => <form {...props} data-custom="foo" />}
                         onSubmit={onSubmit}
                     >
