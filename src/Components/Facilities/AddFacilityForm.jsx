@@ -54,7 +54,7 @@ const AddFacilityForm = ({ userId }) => {
     };
 
     return (
-        <Form onSubmit={onSubmit} className="p-10 space-y-8">
+        <Form onSubmit={onSubmit} className="p-7 md:p-10 space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
                 {/* Facility Name */}
