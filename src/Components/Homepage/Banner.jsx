@@ -7,7 +7,7 @@ import { MdArrowRightAlt, MdVerifiedUser } from "react-icons/md";
 import { SlCalender } from "react-icons/sl";
 const Banner = () => {
     return (
-        <div className="relative bg-[url('/assets/tenis.jpg')] text-white flex justify-between flex-col items-center bg-no-repeat bg-cover gap-5 h-140 md:h-140">
+        <div className="relative bg-[url('/assets/tenis.jpg')] text-white flex justify-between flex-col items-center bg-no-repeat bg-cover gap-5 h-170 md:h-140">
             {/* Overlay */}
             <div className="absolute inset-0 bg-[#000000] opacity-40"></div>
 
