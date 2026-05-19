@@ -72,7 +72,11 @@ const Navbar = () => {
                                 <Link
                                     key={link.href}
                                     href={link.href}
-                                    className="text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 px-3 py-1.5 rounded-md transition-colors duration-150 font-medium"
+                                    className={`text-sm px-3 py-1.5 rounded-md transition-colors duration-150 font-medium
+                                    ${pathname === link.href
+                                            ? "text-(--noir) border-b-2 border-(--noir)"
+                                            : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                                        }`}
                                 >
                                     {link.label}
                                 </Link>
@@ -182,7 +186,11 @@ const Navbar = () => {
                                     key={link.href}
                                     href={link.href}
                                     onClick={() => setMobileMenuOpen(false)}
-                                    className="px-6 py-3.5 text-[15px] text-gray-800 hover:bg-gray-50 transition-colors border-b border-gray-50 font-medium"
+                                    className={`text-sm px-3 py-1.5 rounded-md transition-colors duration-150 font-medium
+                                        ${pathname === link.href
+                                            ? "text-(--noir) border-b-2 border-(--noir)"
+                                            : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                                        }`}
                                 >
                                     {link.label}
                                 </Link>
