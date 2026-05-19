@@ -3,8 +3,6 @@
 > **Book the perfect sports arena in seconds.**  
 > A modern, full-stack sports facility booking platform where users can discover, book, and manage football fields, cricket grounds, badminton courts, gyms, and more — all in one place.
 
-![ArenaHub Banner](./assets/banner.png)
-
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-arenahub--eta.vercel.app-brightgreen?style=for-the-badge)](https://arenahub-eta.vercel.app)
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![Express.js](https://img.shields.io/badge/Express.js-Backend-000000?style=for-the-badge&logo=express)](https://expressjs.com/)
