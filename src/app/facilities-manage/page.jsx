@@ -73,7 +73,7 @@ const ManageFacility = async () => {
                                             Active
                                         </span>
                                     </td>
-                                    <td className="px-5 py-4 flex gap-2">
+                                    <td className="px-5 py-4 flex items-center gap-2">
                                         <EditModal facility={facility} />
                                         <DeleteAlert facility={facility} />
                                     </td>
