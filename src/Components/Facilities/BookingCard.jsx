@@ -86,7 +86,7 @@ const BookingCard = ({ facility }) => {
                     min={new Date().toISOString().split('T')[0]}
                     disabled={booked}
                     required
-                    className="rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-700 focus:outline-none focus:border-blue-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-700 focus:outline-none focus:border-gray-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed appearance-none"
                 />
             </div>
 
